@@ -10,14 +10,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
+    /* ============================================================
+       COLOUR PALETTE — change values here to update colours
+       site-wide. Every element below references one of these
+       variables, so editing a value here updates every use of it.
+       ============================================================ */
     --bg: #0A0E14;
     --surface: #10161F;
     --surface-raised: #151C27;
     --line: #232B36;
     --line-soft: #1A212B;
     --text: #E8EAED;
-    --text-dim: #ADB7C4;
-    --text-faint: #7C8798;
+    --text-dim: #8B95A1;
+    --text-faint: #566072;
     --gold: #C9A24B;
     --gold-dim: #8A7440;
     --studying: #6FA089;
@@ -62,24 +67,10 @@
   a { color: inherit; }
   .wrap{ max-width: 1080px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1;}
 
-  /* ---------- NAV ---------- */
-  nav{
-    position: sticky; top:0; z-index: 10;
-    background: rgba(10,14,20,0.85);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--line);
-  }
-  nav .wrap{ display:flex; align-items:center; justify-content:space-between; padding-top:18px; padding-bottom:18px; }
-  .brand{ font-family: var(--mono); font-size: 14px; letter-spacing: 0.06em; color: var(--text); text-decoration:none; }
-  .brand span{ color: var(--gold); }
-  .navlinks{ display:flex; gap: 28px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
-  .navlinks a{ text-decoration:none; color: var(--text-dim); transition: color .2s ease; }
-  .navlinks a:hover, .navlinks a:focus-visible{ color: var(--gold); }
-
   /* ---------- HERO ---------- */
   header.hero{ padding: 88px 0 40px; }
   .eyebrow{
-    font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    font-family: var(--mono); font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--gold); display:flex; align-items:center; gap:10px; margin-bottom: 22px;
   }
   .eyebrow::before{ content:""; width:22px; height:1px; background: var(--gold-dim); display:inline-block; }
@@ -88,13 +79,12 @@
     font-family: var(--display); font-weight: 700;
     font-size: clamp(2.4rem, 6vw, 4.2rem);
     line-height: 1.02; margin: 0 0 18px; letter-spacing: -0.01em;
-    color: var(--text-faint);
   }
   .role-line{
     font-family: var(--body); font-weight: 500; color: var(--text-dim);
     font-size: clamp(1rem, 2vw, 1.15rem); max-width: 680px; margin: 0 0 36px;
   }
-  .role-line strong{ color: var(--text-dim); font-weight: 600; }
+  .role-line strong{ color: var(--text); font-weight: 600; }
 
   .lede{ color: var(--text-dim); font-size: 1rem; max-width: 52ch; }
 
@@ -108,8 +98,7 @@
   .section-head .eyebrow{ margin-bottom: 14px; }
   h2{
     font-family: var(--display); font-size: clamp(1.5rem, 3vw, 2.1rem);
-    margin: 0; font-weight: 700; letter-spacing: -0.005em;
-    color: var(--text-faint);
+    margin: 0; font-weight: 600; letter-spacing: -0.005em;
   }
   .section-sub{ color: var(--text-dim); max-width: 60ch; margin-top: 10px; font-size: 0.98rem; }
 
@@ -125,7 +114,7 @@
     padding: 16px 0; border-bottom: 1px solid var(--line);
   }
   .focus-item:first-child{ border-top: 1px solid var(--line); }
-  .focus-item .fname{ font-family: var(--display); font-weight: 600; font-size: 1.02rem; color: var(--text-faint); }
+  .focus-item .fname{ font-family: var(--display); font-weight: 600; font-size: 1.02rem; }
   .focus-item .fmeta{ font-family: var(--mono); font-size: 11px; color: var(--text-faint); letter-spacing: 0.05em; text-transform: uppercase; }
 
   /* ---------- CERT GRID ---------- */
@@ -148,22 +137,39 @@
   .cert-card .cname{ font-family: var(--display); font-weight: 600; font-size: 1.02rem; margin: 0 0 6px; }
   .cert-card .issuer{ font-family: var(--mono); font-size: 10.5px; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.06em; }
 
+  /* Badge image + code sit side by side above the cert name.
+     Point each <img class="badge-img"> at your real PNG badge file
+     (see the /badges/ folder and README for instructions). */
+  .cert-head{ display:flex; align-items:center; gap: 12px; margin-bottom: 12px; }
+  .cert-head .code{ margin-bottom: 0; }
+  .badge-img{
+    flex-shrink: 0; width: 40px; height: 40px;
+    object-fit: contain;
+  }
+
   .cert-card.certified{ border-left: 2px solid var(--gold); }
+  .badge{
+    position: absolute; top: 20px; right: 18px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gold);
+  }
 
   .cert-card.studying{ border-left: 2px dashed var(--studying); }
   .cert-card.studying .code{ color: var(--studying); }
+  .cert-card.studying .badge{ background: transparent; border: 1.5px dashed var(--studying); }
+  .cert-card.studying .badge-img{ opacity: 0.55; filter: grayscale(40%); }
 
-  .cert-head{ display:flex; align-items:center; gap: 12px; margin-bottom: 12px; }
-  .cert-head .code{ margin-bottom: 0; }
-  .seal{ flex-shrink: 0; width: 34px; height: 34px; }
-  .seal .hex{ fill: var(--bg); stroke: var(--gold); stroke-width: 1.5; }
-  .seal text{ font-family: var(--mono); font-weight: 600; font-size: 9.5px; fill: var(--gold); }
-  .cert-card.studying .seal .hex{ stroke: var(--studying); stroke-dasharray: 2.5 2.5; }
-  .cert-card.studying .seal text{ fill: var(--studying); }
-
-  /* ---------- FOOTER ---------- */
+  /* ---------- FOOTER / CONTACT ---------- */
   footer{ border-top: 1px solid var(--line); padding: 64px 0 40px; }
-  .fine{ font-family: var(--mono); font-size: 11px; color: var(--text-faint); letter-spacing: 0.03em; }
+  .contact-row{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap: wrap; gap: 24px; }
+  .contact-links{ display:flex; gap: 22px; flex-wrap: wrap; }
+  .contact-links a{
+    font-family: var(--mono); font-size: 13px; text-decoration:none;
+    color: var(--text-dim); border-bottom: 1px solid var(--line);
+    padding-bottom: 3px; transition: color .2s ease, border-color .2s ease;
+  }
+  .contact-links a:hover, .contact-links a:focus-visible{ color: var(--gold); border-color: var(--gold-dim); }
+  .fine{ font-family: var(--mono); font-size: 11px; color: var(--text-faint); margin-top: 40px; letter-spacing: 0.03em; }
 
   ::selection{ background: var(--gold-dim); color: var(--bg); }
 
@@ -174,27 +180,19 @@
 </head>
 <body>
 
-<nav>
-  <div class="wrap">
-    <a class="brand" href="#top">S<span>M</span> / CLOUD ARCHITECT</a>
-    <div class="navlinks">
-      <a href="#about">Profile</a>
-      <a href="#certified">Certified</a>
-      <a href="#studying">In Progress</a>
-    </div>
-  </div>
-</nav>
-
+<!-- ================================================================
+     HERO — name, title line, intro paragraph, and the 3 stat boxes
+     (20+ Years / 7 Certifications / 3 Platforms) at the top of the page.
+     ================================================================ -->
 <header class="hero" id="top">
   <div class="wrap">
     <div class="eyebrow">Head of Cloud</div>
     <h1 class="name">Shaun Majithia</h1>
     <p class="role-line">
-      <strong>Microsoft Certified: Cybersecurity Architect Expert</strong> ·
       Azure · AWS · Microsoft 365 · Identity &amp; Access Management · Cloud Security
     </p>
     <p class="lede">
-      Cloud Architect specialising in designing, securing and optimising Azure, AWS
+      Cloud Architect specialising in designing, operating, securing and optimising Azure, AWS
       and Microsoft 365 environments — with a strong focus on identity, security,
       compliance and enterprise governance.
     </p>
@@ -206,6 +204,11 @@
   </div>
 </header>
 
+<!-- ================================================================
+     ABOUT / PROFILE — the "Enterprise cloud, secured by design"
+     section: the two intro paragraphs on the left, and the
+     Focus Areas list on the right (Cloud Architecture, IAM, etc).
+     ================================================================ -->
 <section id="about">
   <div class="wrap">
     <div class="about-grid">
@@ -229,6 +232,7 @@
 
       <div class="focus-list">
         <div class="focus-item"><span class="fname">Cloud Architecture</span><span class="fmeta">Azure / AWS</span></div>
+        <div class="focus-item"><span class="fname">Cloud Operations &amp; Optimisation</span><span class="fmeta">Azure / AWS</span></div>
         <div class="focus-item"><span class="fname">Identity &amp; Access Management</span><span class="fmeta">IAM / SC-300</span></div>
         <div class="focus-item"><span class="fname">Cloud &amp; Cybersecurity</span><span class="fmeta">SC-100</span></div>
         <div class="focus-item"><span class="fname">Microsoft 365 Platforms</span><span class="fmeta">MS-102 / MS-700</span></div>
@@ -238,6 +242,10 @@
   </div>
 </section>
 
+<!-- ================================================================
+     CERTIFICATIONS — the grid of earned certification cards
+     (SAA-C03, SC-100, MS-102, etc). Each card is one <div class="cert-card certified">.
+     ================================================================ -->
 <section id="certified">
   <div class="wrap">
     <div class="section-head">
@@ -248,56 +256,63 @@
 
     <div class="cert-grid">
       <div class="cert-card certified">
+        <span class="badge"></span>
         <div class="cert-head">
-          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">AWS</text></svg>
+          <img class="badge-img" src="badges/aws-saa-c03.png" alt="AWS Certified Solutions Architect badge" onerror="this.style.display='none'">
           <span class="code">SAA-C03</span>
         </div>
         <p class="cname">AWS Certified Solutions Architect</p>
         <span class="issuer">Amazon Web Services</span>
       </div>
       <div class="cert-card certified">
+        <span class="badge"></span>
         <div class="cert-head">
-          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">MS</text></svg>
+          <img class="badge-img" src="badges/ms-sc-100.png" alt="Microsoft Certified: Cybersecurity Architect Expert badge" onerror="this.style.display='none'">
           <span class="code">SC-100</span>
         </div>
         <p class="cname">Cybersecurity Architect Expert</p>
         <span class="issuer">Microsoft</span>
       </div>
       <div class="cert-card certified">
+        <span class="badge"></span>
         <div class="cert-head">
-          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">MS</text></svg>
+          <img class="badge-img" src="badges/ms-ms-102.png" alt="Microsoft 365 Certified: Administrator Expert badge" onerror="this.style.display='none'">
           <span class="code">MS-102</span>
         </div>
         <p class="cname">Microsoft 365 Expert</p>
         <span class="issuer">Microsoft</span>
       </div>
       <div class="cert-card certified">
+        <span class="badge"></span>
         <div class="cert-head">
-          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">MS</text></svg>
+          <img class="badge-img" src="badges/ms-sc-300.png" alt="Microsoft Certified: Identity and Access Administrator Associate badge" onerror="this.style.display='none'">
           <span class="code">SC-300</span>
         </div>
         <p class="cname">Identity and Access Administrator</p>
         <span class="issuer">Microsoft</span>
       </div>
       <div class="cert-card certified">
+        <span class="badge"></span>
         <div class="cert-head">
-          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">MS</text></svg>
+          <img class="badge-img" src="badges/ms-az-104.png" alt="Microsoft Certified: Azure Administrator Associate badge" onerror="this.style.display='none'">
           <span class="code">AZ-104</span>
         </div>
         <p class="cname">Azure Administrator</p>
         <span class="issuer">Microsoft</span>
       </div>
       <div class="cert-card certified">
+        <span class="badge"></span>
         <div class="cert-head">
-          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">MS</text></svg>
+          <img class="badge-img" src="badges/ms-ms-203.png" alt="Microsoft 365 Certified: Messaging Administrator Associate badge" onerror="this.style.display='none'">
           <span class="code">MS-203</span>
         </div>
         <p class="cname">Messaging Administrator Associate</p>
         <span class="issuer">Microsoft</span>
       </div>
       <div class="cert-card certified">
+        <span class="badge"></span>
         <div class="cert-head">
-          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">MS</text></svg>
+          <img class="badge-img" src="badges/ms-ms-700.png" alt="Microsoft 365 Certified: Teams Administrator Associate badge" onerror="this.style.display='none'">
           <span class="code">MS-700</span>
         </div>
         <p class="cname">Teams Administrator Associate</p>
@@ -307,6 +322,10 @@
   </div>
 </section>
 
+<!-- ================================================================
+     CURRENTLY STUDYING — the grid of in-progress certification cards
+     (AZ-305, SAP-C02, etc). Each card is one <div class="cert-card studying">.
+     ================================================================ -->
 <section id="studying">
   <div class="wrap">
     <div class="section-head">
@@ -317,32 +336,36 @@
 
     <div class="cert-grid">
       <div class="cert-card studying">
+        <span class="badge"></span>
         <div class="cert-head">
-          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">MS</text></svg>
+          <img class="badge-img" src="badges/ms-az-305.png" alt="Microsoft Certified: Azure Solutions Architect Expert badge" onerror="this.style.display='none'">
           <span class="code">AZ-305</span>
         </div>
         <p class="cname">Azure Solutions Architect Expert</p>
         <span class="issuer">Microsoft</span>
       </div>
       <div class="cert-card studying">
+        <span class="badge"></span>
         <div class="cert-head">
-          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">AWS</text></svg>
+          <img class="badge-img" src="badges/aws-sap-c02.png" alt="AWS Certified Solutions Architect Professional badge" onerror="this.style.display='none'">
           <span class="code">SAP-C02</span>
         </div>
         <p class="cname">AWS Solutions Architect Professional</p>
         <span class="issuer">Amazon Web Services</span>
       </div>
       <div class="cert-card studying">
+        <span class="badge"></span>
         <div class="cert-head">
-          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">HC</text></svg>
+          <img class="badge-img" src="badges/hashicorp-terraform-associate.png" alt="HashiCorp Certified: Terraform Associate badge" onerror="this.style.display='none'">
           <span class="code">004</span>
         </div>
         <p class="cname">HashiCorp Terraform Associate</p>
         <span class="issuer">HashiCorp</span>
       </div>
       <div class="cert-card studying">
+        <span class="badge"></span>
         <div class="cert-head">
-          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">MS</text></svg>
+          <img class="badge-img" src="badges/ms-sc-500.png" alt="Microsoft Certified: Cloud and AI Security Engineer Associate badge" onerror="this.style.display='none'">
           <span class="code">SC-500</span>
         </div>
         <p class="cname">Cloud and AI Security Engineer</p>
@@ -352,8 +375,22 @@
   </div>
 </section>
 
+<!-- ================================================================
+     FOOTER — the "Get in touch" heading, LinkedIn/email links,
+     and the copyright line at the very bottom of the page.
+     ================================================================ -->
 <footer id="contact">
   <div class="wrap">
+    <div class="contact-row">
+      <div>
+        <div class="eyebrow">Get in touch</div>
+        <h2 style="font-size: 1.6rem;">Let's talk cloud architecture.</h2>
+      </div>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-HANDLE" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="mailto:your.email@example.com">Email</a>
+      </div>
+    </div>
     <div class="fine">© <span id="year"></span> Shaun Majithia — Head of Cloud · Microsoft Certified Architect Expert</div>
   </div>
 </footer>

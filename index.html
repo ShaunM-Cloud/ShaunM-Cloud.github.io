@@ -1,130 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaun M Cloud</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fa;
-            color: #333;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shaun Majithia — Head of Cloud &amp; Cloud Architect</title>
+<meta name="description" content="Shaun Majithia — Head of Cloud, Microsoft Certified Architect Expert. Azure, AWS, Microsoft 365, Identity &amp; Access Management, Cloud Security.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0A0E14;
+    --surface: #10161F;
+    --surface-raised: #151C27;
+    --line: #232B36;
+    --line-soft: #1A212B;
+    --text: #E8EAED;
+    --text-dim: #ADB7C4;
+    --text-faint: #7C8798;
+    --gold: #C9A24B;
+    --gold-dim: #8A7440;
+    --studying: #6FA089;
 
-        header {
-            background: #0078d4;
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'IBM Plex Sans', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
 
-        h1 {
-            margin: 0;
-            font-size: 3rem;
-        }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
 
-        .tagline {
-            font-size: 1.2rem;
-            margin-top: 10px;
-        }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
 
-        section {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+  /* faint blueprint grid backdrop */
+  body::before{
+    content:"";
+    position: fixed;
+    inset:0;
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
+  }
 
-        h2 {
-            color: #0078d4;
-        }
+  a { color: inherit; }
+  .wrap{ max-width: 1080px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1;}
 
-        ul {
-            padding-left: 20px;
-        }
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky; top:0; z-index: 10;
+    background: rgba(10,14,20,0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; padding-top:18px; padding-bottom:18px; }
+  .brand{ font-family: var(--mono); font-size: 14px; letter-spacing: 0.06em; color: var(--text); text-decoration:none; }
+  .brand span{ color: var(--gold); }
+  .navlinks{ display:flex; gap: 28px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .navlinks a{ text-decoration:none; color: var(--text-dim); transition: color .2s ease; }
+  .navlinks a:hover, .navlinks a:focus-visible{ color: var(--gold); }
 
-        footer {
-            text-align: center;
-            background: #222;
-            color: white;
-            padding: 20px;
-            margin-top: 40px;
-        }
+  /* ---------- HERO ---------- */
+  header.hero{ padding: 88px 0 40px; }
+  .eyebrow{
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); display:flex; align-items:center; gap:10px; margin-bottom: 22px;
+  }
+  .eyebrow::before{ content:""; width:22px; height:1px; background: var(--gold-dim); display:inline-block; }
 
-        a {
-            color: #0078d4;
-            text-decoration: none;
-        }
-    </style>
+  h1.name{
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    line-height: 1.02; margin: 0 0 18px; letter-spacing: -0.01em;
+    color: var(--text-faint);
+  }
+  .role-line{
+    font-family: var(--body); font-weight: 500; color: var(--text-dim);
+    font-size: clamp(1rem, 2vw, 1.15rem); max-width: 680px; margin: 0 0 36px;
+  }
+  .role-line strong{ color: var(--text-dim); font-weight: 600; }
+
+  .lede{ color: var(--text-dim); font-size: 1rem; max-width: 52ch; }
+
+  .hero-stats{ display:flex; gap: 30px; margin-top: 34px; flex-wrap: wrap; }
+  .stat b{ display:block; font-family: var(--display); font-size: 1.6rem; color: var(--gold); }
+  .stat span{ font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-faint); }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{ padding: 84px 0; border-top: 1px solid var(--line); }
+  .section-head{ margin-bottom: 44px; }
+  .section-head .eyebrow{ margin-bottom: 14px; }
+  h2{
+    font-family: var(--display); font-size: clamp(1.5rem, 3vw, 2.1rem);
+    margin: 0; font-weight: 700; letter-spacing: -0.005em;
+    color: var(--text-faint);
+  }
+  .section-sub{ color: var(--text-dim); max-width: 60ch; margin-top: 10px; font-size: 0.98rem; }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; }
+  @media (max-width: 860px){ .about-grid{ grid-template-columns: 1fr; gap: 36px; } }
+  .about-grid p{ color: var(--text-dim); font-size: 1.02rem; max-width: 56ch; }
+  .about-grid p + p{ margin-top: 16px; }
+
+  .focus-list{ display:flex; flex-direction: column; gap: 0; }
+  .focus-item{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding: 16px 0; border-bottom: 1px solid var(--line);
+  }
+  .focus-item:first-child{ border-top: 1px solid var(--line); }
+  .focus-item .fname{ font-family: var(--display); font-weight: 600; font-size: 1.02rem; color: var(--text-faint); }
+  .focus-item .fmeta{ font-family: var(--mono); font-size: 11px; color: var(--text-faint); letter-spacing: 0.05em; text-transform: uppercase; }
+
+  /* ---------- CERT GRID ---------- */
+  .cert-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+
+  .cert-card{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 22px 20px;
+    position: relative;
+    transition: border-color .25s ease, transform .25s ease;
+  }
+  .cert-card:hover{ border-color: var(--gold-dim); transform: translateY(-2px); }
+
+  .cert-card .code{
+    font-family: var(--mono); font-size: 13px; color: var(--gold);
+    letter-spacing: 0.04em; display:block; margin-bottom: 10px;
+  }
+  .cert-card .cname{ font-family: var(--display); font-weight: 600; font-size: 1.02rem; margin: 0 0 6px; }
+  .cert-card .issuer{ font-family: var(--mono); font-size: 10.5px; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .cert-card.certified{ border-left: 2px solid var(--gold); }
+
+  .cert-card.studying{ border-left: 2px dashed var(--studying); }
+  .cert-card.studying .code{ color: var(--studying); }
+
+  .cert-head{ display:flex; align-items:center; gap: 12px; margin-bottom: 12px; }
+  .cert-head .code{ margin-bottom: 0; }
+  .seal{ flex-shrink: 0; width: 34px; height: 34px; }
+  .seal .hex{ fill: var(--bg); stroke: var(--gold); stroke-width: 1.5; }
+  .seal text{ font-family: var(--mono); font-weight: 600; font-size: 9.5px; fill: var(--gold); }
+  .cert-card.studying .seal .hex{ stroke: var(--studying); stroke-dasharray: 2.5 2.5; }
+  .cert-card.studying .seal text{ fill: var(--studying); }
+
+  /* ---------- FOOTER ---------- */
+  footer{ border-top: 1px solid var(--line); padding: 64px 0 40px; }
+  .fine{ font-family: var(--mono); font-size: 11px; color: var(--text-faint); letter-spacing: 0.03em; }
+
+  ::selection{ background: var(--gold-dim); color: var(--bg); }
+
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--gold); outline-offset: 3px;
+  }
+</style>
 </head>
 <body>
 
-<header>
-    <h1>Shaun M Cloud</h1>
-    <p class="tagline">
-        Microsoft 365 • Azure • Security • Identity • Cloud Architecture
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">S<span>M</span> / CLOUD ARCHITECT</a>
+    <div class="navlinks">
+      <a href="#about">Profile</a>
+      <a href="#certified">Certified</a>
+      <a href="#studying">In Progress</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow">Head of Cloud</div>
+    <h1 class="name">Shaun Majithia</h1>
+    <p class="role-line">
+      <strong>Microsoft Certified: Cybersecurity Architect Expert</strong> ·
+      Azure · AWS · Microsoft 365 · Identity &amp; Access Management · Cloud Security
     </p>
+    <p class="lede">
+      Cloud Architect specialising in designing, securing and optimising Azure, AWS
+      and Microsoft 365 environments — with a strong focus on identity, security,
+      compliance and enterprise governance.
+    </p>
+    <div class="hero-stats">
+      <div class="stat"><b>20+</b><span>Years in Enterprise IT</span></div>
+      <div class="stat"><b>7</b><span>Active Certifications</span></div>
+      <div class="stat"><b>3</b><span>Platforms — Azure / AWS / M365</span></div>
+    </div>
+  </div>
 </header>
 
-<section>
-
-    <div class="card">
-        <h2>About Me</h2>
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <div class="section-head">
+          <div class="eyebrow">Profile</div>
+          <h2>Enterprise cloud, secured by design</h2>
+        </div>
         <p>
-            Cloud Architect specialising in Microsoft 365, Azure,
-            Identity, Security, Governance and Enterprise Cloud Solutions.
+          My experience spans cloud architecture, cybersecurity and enterprise platform
+          design, delivering secure, resilient and compliant solutions across large-scale
+          enterprise environments.
         </p>
-    </div>
-
-    <div class="card">
-        <h2>Certifications</h2>
-        <ul>
-            <li>Microsoft Cybersecurity Architect (SC-100)</li>
-            <li>Microsoft 365 Expert (MS-102)</li>
-            <li>Microsoft Identity Administrator (SC-300)</li>
-            <li>Azure Administrator (AZ-104)</li>
-            <li>Teams Administrator (MS-700)</li>
-            <li>Messaging Administrator (MS-203)</li>
-            <li>AWS Solutions Architect Associate (SAA-C03)</li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <h2>Technical Skills</h2>
-        <ul>
-            <li>Microsoft 365</li>
-            <li>Microsoft Entra ID</li>
-            <li>Azure</li>
-            <li>Terraform</li>
-            <li>Zero Trust Security</li>
-            <li>Conditional Access</li>
-            <li>PowerShell</li>
-            <li>Exchange Online</li>
-            <li>Microsoft Teams</li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <h2>Projects</h2>
         <p>
-            Upcoming Azure, Terraform and Microsoft 365 projects will be
-            published here.
+          Certified across Microsoft, Azure and AWS technologies, I help organisations
+          modernise, secure and govern cloud services while enabling business
+          transformation — treating identity, security and compliance as the foundation
+          every architecture is built on, not an afterthought.
         </p>
-    </div>
+      </div>
 
+      <div class="focus-list">
+        <div class="focus-item"><span class="fname">Cloud Architecture</span><span class="fmeta">Azure / AWS</span></div>
+        <div class="focus-item"><span class="fname">Identity &amp; Access Management</span><span class="fmeta">IAM / SC-300</span></div>
+        <div class="focus-item"><span class="fname">Cloud &amp; Cybersecurity</span><span class="fmeta">SC-100</span></div>
+        <div class="focus-item"><span class="fname">Microsoft 365 Platforms</span><span class="fmeta">MS-102 / MS-700</span></div>
+        <div class="focus-item"><span class="fname">Enterprise Governance</span><span class="fmeta">Compliance</span></div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<footer>
-    © 2026 Shaun M Cloud
+<section id="certified">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Certified</div>
+      <h2>Certifications</h2>
+      <p class="section-sub">Active certifications across Microsoft, Azure and AWS, covering architecture, identity, security and platform administration.</p>
+    </div>
+
+    <div class="cert-grid">
+      <div class="cert-card certified">
+        <div class="cert-head">
+          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">AWS</text></svg>
+          <span class="code">SAA-C03</span>
+        </div>
+        <p class="cname">AWS Certified Solutions Architect</p>
+        <span class="issuer">Amazon Web Services</span>
+      </div>
+      <div class="cert-card certified">
+        <div class="cert-head">
+          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">MS</text></svg>
+          <span class="code">SC-100</span>
+        </div>
+        <p class="cname">Cybersecurity Architect Expert</p>
+        <span class="issuer">Microsoft</span>
+      </div>
+      <div class="cert-card certified">
+        <div class="cert-head">
+          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">MS</text></svg>
+          <span class="code">MS-102</span>
+        </div>
+        <p class="cname">Microsoft 365 Expert</p>
+        <span class="issuer">Microsoft</span>
+      </div>
+      <div class="cert-card certified">
+        <div class="cert-head">
+          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">MS</text></svg>
+          <span class="code">SC-300</span>
+        </div>
+        <p class="cname">Identity and Access Administrator</p>
+        <span class="issuer">Microsoft</span>
+      </div>
+      <div class="cert-card certified">
+        <div class="cert-head">
+          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">MS</text></svg>
+          <span class="code">AZ-104</span>
+        </div>
+        <p class="cname">Azure Administrator</p>
+        <span class="issuer">Microsoft</span>
+      </div>
+      <div class="cert-card certified">
+        <div class="cert-head">
+          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">MS</text></svg>
+          <span class="code">MS-203</span>
+        </div>
+        <p class="cname">Messaging Administrator Associate</p>
+        <span class="issuer">Microsoft</span>
+      </div>
+      <div class="cert-card certified">
+        <div class="cert-head">
+          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">MS</text></svg>
+          <span class="code">MS-700</span>
+        </div>
+        <p class="cname">Teams Administrator Associate</p>
+        <span class="issuer">Microsoft</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="studying">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">In Progress</div>
+      <h2>Currently Studying</h2>
+      <p class="section-sub">Continuing to build depth in solutions architecture, infrastructure-as-code and AI-driven cloud security.</p>
+    </div>
+
+    <div class="cert-grid">
+      <div class="cert-card studying">
+        <div class="cert-head">
+          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">MS</text></svg>
+          <span class="code">AZ-305</span>
+        </div>
+        <p class="cname">Azure Solutions Architect Expert</p>
+        <span class="issuer">Microsoft</span>
+      </div>
+      <div class="cert-card studying">
+        <div class="cert-head">
+          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">AWS</text></svg>
+          <span class="code">SAP-C02</span>
+        </div>
+        <p class="cname">AWS Solutions Architect Professional</p>
+        <span class="issuer">Amazon Web Services</span>
+      </div>
+      <div class="cert-card studying">
+        <div class="cert-head">
+          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">HC</text></svg>
+          <span class="code">004</span>
+        </div>
+        <p class="cname">HashiCorp Terraform Associate</p>
+        <span class="issuer">HashiCorp</span>
+      </div>
+      <div class="cert-card studying">
+        <div class="cert-head">
+          <svg class="seal" viewBox="0 0 40 40"><polygon class="hex" points="20,2 36,11 36,29 20,38 4,29 4,11"/><text x="20" y="24" text-anchor="middle">MS</text></svg>
+          <span class="code">SC-500</span>
+        </div>
+        <p class="cname">Cloud and AI Security Engineer</p>
+        <span class="issuer">Microsoft</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="fine">© <span id="year"></span> Shaun Majithia — Head of Cloud · Microsoft Certified Architect Expert</div>
+  </div>
 </footer>
 
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>

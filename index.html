@@ -80,17 +80,40 @@
     font-size: clamp(2.4rem, 6vw, 4.2rem);
     line-height: 1.02; margin: 0 0 18px; letter-spacing: -0.01em;
   }
-  .role-line{
-    font-family: var(--body); font-weight: 500; color: var(--text-dim);
-    font-size: clamp(1rem, 2vw, 1.15rem); max-width: 680px; margin: 0 0 36px;
+  .tag-row{ display:flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; max-width: 680px; }
+  .tag{
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.02em;
+    color: var(--text-dim); border: 1px solid var(--line);
+    border-radius: 20px; padding: 5.5px 13px;
+    background: var(--surface);
   }
-  .role-line strong{ color: var(--text); font-weight: 600; }
 
-  .lede{ color: var(--text-dim); font-size: 1rem; max-width: 52ch; }
+  .lede{ color: var(--text-dim); font-size: 1rem; max-width: 52ch; margin: 18px 0 0; }
 
-  .hero-stats{ display:flex; gap: 30px; margin-top: 34px; flex-wrap: wrap; }
-  .stat b{ display:block; font-family: var(--display); font-size: 1.6rem; color: var(--gold); }
-  .stat span{ font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-faint); }
+  .hero-grid{ display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items:start; }
+  @media (max-width: 860px){ .hero-grid{ grid-template-columns: 1fr; } }
+
+  /* ---------- STAT PANEL (right side of hero) ---------- */
+  .stat-panel{
+    display:flex; flex-direction: column; gap: 10px;
+    margin-top: 44px;
+  }
+  .stat-block{
+    padding: 13px 18px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--surface);
+    transition: border-color .25s ease, transform .25s ease;
+  }
+  .stat-block:hover{ border-color: var(--gold-dim); transform: translateY(-2px); }
+  .stat-block b{
+    display:block; font-family: var(--display); font-weight: 700;
+    font-size: 1.5rem; color: var(--gold); line-height: 1.1;
+  }
+  .stat-block span{
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--text-faint);
+  }
 
   /* ---------- SECTION SHARED ---------- */
   section{ padding: 84px 0; border-top: 1px solid var(--line); }
@@ -106,9 +129,11 @@
   .about-grid{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; }
   @media (max-width: 860px){ .about-grid{ grid-template-columns: 1fr; gap: 36px; } }
   .about-grid p{ color: var(--text-dim); font-size: 1.02rem; max-width: 56ch; }
+  .about-grid .section-head{ margin-bottom: 14px; }
+  .about-grid .section-head + p{ margin-top: 0; }
   .about-grid p + p{ margin-top: 16px; }
 
-  .focus-list{ display:flex; flex-direction: column; gap: 0; }
+  .focus-list{ display:flex; flex-direction: column; gap: 0; margin-top: 44px; }
   .focus-item{
     display:flex; justify-content:space-between; align-items:baseline;
     padding: 16px 0; border-bottom: 1px solid var(--line);
@@ -186,18 +211,39 @@
      ================================================================ -->
 <header class="hero" id="top">
   <div class="wrap">
-    <div class="eyebrow">Head of Cloud</div>
-    <h1 class="name">Shaun Majithia</h1>
-    <p class="role-line">
-      Azure · AWS · Microsoft 365 · Identity &amp; Access Management · Cloud Security
-    </p>
-    <p class="lede">
-    Technical Cloud Architect and technology leader specialising in the design, operation, security and optimisation of Azure, AWS and Microsoft 365 environments, with a strong focus on identity, cybersecurity, compliance, governance and cloud strategy.
-    </p>
-    <div class="hero-stats">
-      <div class="stat"><b>20+</b><span>Years in Enterprise IT</span></div>
-      <div class="stat"><b>7</b><span>Active Certifications</span></div>
-      <div class="stat"><b>3</b><span>Platforms — Azure / AWS / M365</span></div>
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Head of Cloud</div>
+        <h1 class="name">Shaun Majithia</h1>
+        <p class="lede">
+          Technical Cloud Architect and technology leader specialising in the design, operation,
+          security and optimisation of Azure, AWS and Microsoft 365 environments, with a strong
+          focus on identity, cybersecurity, compliance, governance and cloud strategy.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Azure</span>
+          <span class="tag">AWS</span>
+          <span class="tag">Microsoft 365</span>
+          <span class="tag">Identity &amp; Access Management</span>
+          <span class="tag">Cloud Security</span>
+          <span class="tag">Cloud Governance</span>
+        </div>
+      </div>
+
+      <div class="stat-panel">
+        <div class="stat-block">
+          <b>20+</b>
+          <span>Years in Enterprise IT</span>
+        </div>
+        <div class="stat-block">
+          <b>7</b>
+          <span>Active Certifications</span>
+        </div>
+        <div class="stat-block">
+          <b>3</b>
+          <span>Platforms — Azure / AWS / M365</span>
+        </div>
+      </div>
     </div>
   </div>
 </header>
@@ -304,7 +350,7 @@
           <img class="badge-img" src="badges/microsoft-certified-associate-badge.svg" alt="Microsoft 365 Certified: Messaging Administrator Associate badge" onerror="this.style.display='none'">
           <span class="code">MS-203</span>
         </div>
-        <p class="cname">Messaging Administrator</p>
+        <p class="cname">Messaging Administrator Associate</p>
         <span class="issuer">Microsoft</span>
       </div>
       <div class="cert-card certified">
@@ -313,7 +359,7 @@
           <img class="badge-img" src="badges/microsoft-certified-associate-badge.svg" alt="Microsoft 365 Certified: Teams Administrator Associate badge" onerror="this.style.display='none'">
           <span class="code">MS-700</span>
         </div>
-        <p class="cname">Teams Administrator</p>
+        <p class="cname">Teams Administrator Associate</p>
         <span class="issuer">Microsoft</span>
       </div>
     </div>
@@ -360,6 +406,15 @@
         <p class="cname">HashiCorp Terraform Associate</p>
         <span class="issuer">HashiCorp</span>
       </div>
+      <div class="cert-card studying">
+        <span class="badge"></span>
+        <div class="cert-head">
+          <img class="badge-img" src="badges/ms-sc-500.png" alt="Microsoft Certified: Cloud and AI Security Engineer Associate badge" onerror="this.style.display='none'">
+          <span class="code">SC-500</span>
+        </div>
+        <p class="cname">Cloud and AI Security Engineer</p>
+        <span class="issuer">Microsoft</span>
+      </div>
     </div>
   </div>
 </section>
@@ -376,10 +431,11 @@
         <h2 style="font-size: 1.6rem;">Let's talk cloud architecture.</h2>
       </div>
       <div class="contact-links">
-        <a href="https://www.linkedin.com/in/shaunmaj" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-HANDLE" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="mailto:your.email@example.com">Email</a>
       </div>
     </div>
-    <div class="fine">© <span id="year"></span> Shaun Majithia</div>
+    <div class="fine">© <span id="year"></span> Shaun Majithia — Head of Cloud · Microsoft Certified Architect Expert</div>
   </div>
 </footer>
 

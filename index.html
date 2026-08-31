@@ -67,6 +67,20 @@
   a { color: inherit; }
   .wrap{ max-width: 1080px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1;}
 
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky; top:0; z-index: 10;
+    background: rgba(10,14,20,0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; padding-top:18px; padding-bottom:18px; }
+  .brand{ font-family: var(--mono); font-size: 14px; letter-spacing: 0.06em; color: var(--text); text-decoration:none; }
+  .brand span{ color: var(--gold); }
+  .navlinks{ display:flex; gap: 28px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .navlinks a{ text-decoration:none; color: var(--text-dim); transition: color .2s ease; }
+  .navlinks a:hover, .navlinks a:focus-visible{ color: var(--gold); }
+
   /* ---------- HERO ---------- */
   header.hero{ padding: 88px 0 40px; }
   .eyebrow{
@@ -204,6 +218,18 @@
 </style>
 </head>
 <body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">S<span>M</span> / CLOUD ARCHITECT</a>
+    <div class="navlinks">
+      <a href="#about">Profile</a>
+      <a href="#certified">Certified</a>
+      <a href="#studying">In Progress</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
 
 <!-- ================================================================
      HERO — name, title line, intro paragraph, and the 3 stat boxes
